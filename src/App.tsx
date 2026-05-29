@@ -1,20 +1,39 @@
 const App = () => {
-  // ✅ TEMPORAL - Para diagnosticar
-  console.log('🔥 Firebase Config:', {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY ? '✅ OK' : '❌ FALTA',
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN ? '✅ OK' : '❌ FALTA',
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID ? '✅ OK' : '❌ FALTA',
-    appId: import.meta.env.VITE_FIREBASE_APP_ID ? '✅ OK' : '❌ FALTA',
-  });
+  // ✅ TEMPORAL - Muestra errores en pantalla
+  const config = {
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  };
 
   return (
-    <AuthProvider>
-      <Web3Provider>
-        <NavigationProvider>
-          <AppShell />
-        </NavigationProvider>
-      </Web3Provider>
-    </AuthProvider>
+    <>
+      {/* TEMPORAL - Borrar después */}
+      <div style={{ 
+        position: 'fixed', 
+        top: 0, 
+        left: 0, 
+        right: 0,
+        background: 'black', 
+        color: 'white',
+        padding: '10px',
+        fontSize: '12px',
+        zIndex: 9999 
+      }}>
+        <p>API Key: {config.apiKey ? '✅' : '❌ FALTA'}</p>
+        <p>Project: {config.projectId ? '✅' : '❌ FALTA'}</p>
+        <p>App ID: {config.appId ? '✅' : '❌ FALTA'}</p>
+      </div>
+
+      <AuthProvider>
+        <Web3Provider>
+          <NavigationProvider>
+            <AppShell />
+          </NavigationProvider>
+        </Web3Provider>
+      </AuthProvider>
+    </>
   );
 };
-export default App; // ← ¿Está esto?
+
+export default App;
